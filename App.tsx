@@ -1,117 +1,183 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
 import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
-  Text,
   StatusBar,
+  Text,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
 } from 'react-native';
-
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import Comment from './src/Comment';
 
 const App = () => {
-  const usingHermes = typeof HermesInternal === 'object' && HermesInternal !== null;
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {!usingHermes ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <ImageBackground
+              source={{
+                uri:
+                  'https://images.unsplash.com/photo-1470058869958-2a77ade41c02?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80',
+              }}
+              style={styles.image}>
+              <Image
+                source={{
+                  uri:
+                    'https://images.unsplash.com/photo-1481437642641-2f0ae875f836',
+                }}
+                style={styles.profile}
+              />
+            </ImageBackground>
           </View>
-        </ScrollView>
+          <View style={styles.blank}></View>
+          <View style={styles.nameContainer}>
+            <Text style={styles.name}>Gwan-duk Kim</Text>
+          </View>
+          <View style={styles.buttonsContainer}>
+            <TouchableOpacity onPress={() => ''} style={styles.contactButton}>
+              <Text style={styles.contactButtonText}>연락하기</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => ''} style={styles.contactButton}>
+              <Text style={styles.contactButtonText}>블로그 방문</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.summaryContainer}>
+            <View style={styles.summaryRow}>
+              <View style={styles.summaryItem}>
+                <Text style={styles.summaryItemIcon}>👍</Text>
+                <Text style={styles.summaryItemText}>123</Text>
+              </View>
+              <View style={styles.summaryItem}>
+                <Text style={styles.summaryItemIcon}>🍔</Text>
+                <Text style={styles.summaryItemText}>123</Text>
+              </View>
+              <View style={styles.summaryItem}>
+                <Text style={styles.summaryItemIcon}>❤️</Text>
+                <Text style={styles.summaryItemText}>123</Text>
+              </View>
+            </View>
+            <View style={styles.summaryRow}>
+              <View style={styles.summaryItem}>
+                <Text style={styles.summaryItemIcon}>⭐️</Text>
+                <Text style={styles.summaryItemText}>123</Text>
+              </View>
+              <View style={styles.summaryItem}>
+                <Text style={styles.summaryItemIcon}>🏊</Text>
+                <Text style={styles.summaryItemText}>123</Text>
+              </View>
+              <View style={styles.summaryItem}>
+                <Text style={styles.summaryItemIcon}>✏️</Text>
+                <Text style={styles.summaryItemText}>123</Text>
+              </View>
+            </View>
+          </View>
+          <View style={styles.commentsContainer}>
+            <Comment />
+          </View>
+        </View>
       </SafeAreaView>
     </>
   );
 };
 
+const profileWidth = 120;
+
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+  container: {
+    top: 20,
+    width: '80%',
+    backgroundColor: '#FFF',
+    alignSelf: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
-  engine: {
+  header: {
+    position: 'relative',
+  },
+  image: {
+    width: '100%',
+    height: 150,
+    alignItems: 'center',
+  },
+  profile: {
     position: 'absolute',
-    right: 0,
+    bottom: 0,
+    transform: [
+      {
+        translateY: profileWidth / 2,
+      },
+    ],
+    width: profileWidth,
+    height: profileWidth,
+    borderWidth: 3,
+    borderColor: '#FFF',
+    borderRadius: profileWidth / 2,
   },
-  body: {
-    backgroundColor: Colors.white,
+  blank: {
+    height: profileWidth / 2,
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  nameContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 70,
+    marginBottom: 3,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
+  name: {
+    fontSize: 20,
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
+  buttonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
-  highlight: {
-    fontWeight: '700',
+  contactButton: {
+    marginLeft: 5,
+    marginRight: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    paddingTop: 5,
+    paddingRight: 20,
+    paddingBottom: 5,
+    paddingLeft: 20,
+    borderColor: '#8FC5F2',
+    borderWidth: 2,
+    width: '40%',
   },
-  footer: {
-    color: Colors.dark,
+  contactButtonText: {
     fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
+    color: '#8FC5F2',
   },
+  summaryContainer: {
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  summaryRow: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  summaryItem: {
+    flexDirection: 'row',
+  },
+  summaryItemIcon: {
+    fontSize: 16,
+  },
+  summaryItemText: {
+    fontSize: 16,
+  },
+  commentsContainer: {},
 });
 
 export default App;
